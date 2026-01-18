@@ -25,8 +25,8 @@ public:
    {
       checkpoint = TESTNGPPST_SET_RESOURCE_CHECK_POINT();
 
-      cleaner.METHOD(EnvironmentCleaner::cleanUp).stubs();
-      handler.METHOD(SandboxHandler::handle).stubs();
+      cleaner.METHOD_MACRO(EnvironmentCleaner::cleanUp).stubs();
+      handler.METHOD_MACRO(SandboxHandler::handle).stubs();
    }
 
    void tearDown()

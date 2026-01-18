@@ -32,22 +32,22 @@ public:
    {
       checkpoint = TESTNGPPST_SET_RESOURCE_CHECK_POINT();
 
-      filter1.METHOD(TestFilter::isFixtureMatch)
+      filter1.METHOD_MACRO(TestFilter::isFixtureMatch)
          .defaults().will(returnValue(false));
 
-      filter1.METHOD(TestFilter::isCaseMatch)
+      filter1.METHOD_MACRO(TestFilter::isCaseMatch)
          .defaults().will(returnValue(false));
 
-      filter2.METHOD(TestFilter::isFixtureMatch)
+      filter2.METHOD_MACRO(TestFilter::isFixtureMatch)
          .defaults().will(returnValue(false));
 
-      filter2.METHOD(TestFilter::isCaseMatch)
+      filter2.METHOD_MACRO(TestFilter::isCaseMatch)
          .defaults().will(returnValue(false));
 
-      filter3.METHOD(TestFilter::isFixtureMatch)
+      filter3.METHOD_MACRO(TestFilter::isFixtureMatch)
          .defaults().will(returnValue(false));
 
-      filter3.METHOD(TestFilter::isCaseMatch)
+      filter3.METHOD_MACRO(TestFilter::isCaseMatch)
          .defaults().will(returnValue(false));
 
       filter = new OrCompositeTestFilter();
@@ -70,7 +70,7 @@ public:
 
    void testShouldMatchesAFixutreIfAnyOfAddedFiltersMatchesIt()
    {
-      filter2.METHOD(TestFilter::isFixtureMatch)
+      filter2.METHOD_MACRO(TestFilter::isFixtureMatch)
          .stubs()
          .with(eq((const TestFixtureInfoReader*)fixture))
          .will(returnValue(true));
@@ -86,7 +86,7 @@ public:
    void testShouldMatchesATestcaseIfAnyOfAddedFiltersMatchesIt()
    {
       const TestCase* tc = (const TestCase*)(const TestCaseInfoReader*)testcase;
-      filter2.METHOD(TestFilter::isCaseMatch)
+      filter2.METHOD_MACRO(TestFilter::isCaseMatch)
          .stubs()
          .with(eq(tc))
          .will(returnValue(true));

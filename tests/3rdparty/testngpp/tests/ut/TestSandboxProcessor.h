@@ -40,8 +40,8 @@ public:
       MockObject<EnvironmentCleaner> cleaner;
       MockObject<SandboxHandler> handler;
 
-      cleaner.METHOD(EnvironmentCleaner::cleanUp).expects(once());
-      handler.METHOD(SandboxHandler::handle).expects(once());
+      cleaner.METHOD_MACRO(EnvironmentCleaner::cleanUp).expects(once());
+      handler.METHOD_MACRO(SandboxHandler::handle).expects(once());
 
       SandboxProcessor::process(fds[0], fds[1], cleaner, handler);
       close(fds[0]);

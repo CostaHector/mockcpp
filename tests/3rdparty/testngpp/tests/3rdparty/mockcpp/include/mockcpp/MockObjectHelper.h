@@ -32,7 +32,7 @@ struct MockObjectTraits
 
 MOCKCPP_NS_END
 
-#define METHOD(m) method(&m, #m)
+#define METHOD_MACRO(m) method(&m, #m)
 
 #define MOCK_METHOD(obj, m) \
    obj.method(&MOCKCPP_NS::MockObjectTraits<FAKE_BOOST_TYPEOF(obj)>::TYPE::m, \
