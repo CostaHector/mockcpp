@@ -133,8 +133,8 @@ public:
      
       decoder = new TestCaseSandboxResultDecoder(rChannel, testcase, collector, true);
 
-      collector.METHOD(TestCaseResultCollector::startTestCase).defaults();
-      collector.METHOD(TestCaseResultCollector::endTestCase).defaults();
+      collector.METHOD_MACRO(TestCaseResultCollector::startTestCase).defaults();
+      collector.METHOD_MACRO(TestCaseResultCollector::endTestCase).defaults();
 
    }
 
@@ -153,7 +153,7 @@ public:
       reporter->startTestCase(testcase);
 
       //////////////////////////////////////////////
-      collector.METHOD(TestCaseResultCollector::startTestCase)
+      collector.METHOD_MACRO(TestCaseResultCollector::startTestCase)
                .expects(once());
 
       TS_ASSERT(!decoder->decode());
@@ -169,7 +169,7 @@ public:
       reporter->endTestCase(testcase,0,0);
 
       //////////////////////////////////////////////
-      collector.METHOD(TestCaseResultCollector::endTestCase)
+      collector.METHOD_MACRO(TestCaseResultCollector::endTestCase)
                .expects(once());
 
       TS_ASSERT(!decoder->decode());
@@ -188,7 +188,7 @@ public:
       reporter->addCaseError(testcase, msg);
 
       //////////////////////////////////////////////
-      collector.METHOD(TestCaseResultCollector::addCaseError)
+      collector.METHOD_MACRO(TestCaseResultCollector::addCaseError)
                .expects(once())
                .with(any(), eq(msg));
 
@@ -208,7 +208,7 @@ public:
       reporter->addCaseFailure(testcase, failure);
 
       //////////////////////////////////////////////
-      collector.METHOD(TestCaseResultCollector::addCaseFailure)
+      collector.METHOD_MACRO(TestCaseResultCollector::addCaseFailure)
                .expects(once())
                .with(any(), eq(failure));
 
@@ -230,7 +230,7 @@ public:
       //////////////////////////////////////////////
       wChannel->close();
 
-      collector.METHOD(TestCaseResultCollector::addCaseFailure)
+      collector.METHOD_MACRO(TestCaseResultCollector::addCaseFailure)
                .expects(exactly(1))
                .with(any(), eq(failure));
 
@@ -317,7 +317,7 @@ public:
    void testShouldReportToCollectorNothingBeforeStartEventReceived()
    {
       //////////////////////////////////////////////
-      collector.METHOD(TestCaseResultCollector::startTestCase)
+      collector.METHOD_MACRO(TestCaseResultCollector::startTestCase)
                .expects(never());
 
       decoder->flush(false);
@@ -328,10 +328,10 @@ public:
    void testShouldReportToCollectorCrashEventEvenStartEventWasNotReceived()
    {
       //////////////////////////////////////////////
-      collector.METHOD(TestCaseResultCollector::startTestCase)
+      collector.METHOD_MACRO(TestCaseResultCollector::startTestCase)
                .expects(once());
 
-      collector.METHOD(TestCaseResultCollector::addCaseCrash)
+      collector.METHOD_MACRO(TestCaseResultCollector::addCaseCrash)
                .expects(once());
 
       decoder->flush(true);
@@ -344,7 +344,7 @@ public:
       reporter->startTestCase(testcase);
       reporter->endTestCase(testcase,0,0);
 
-      collector.METHOD(TestCaseResultCollector::addCaseCrash)
+      collector.METHOD_MACRO(TestCaseResultCollector::addCaseCrash)
                .expects(never());
 
       decoder->decode();

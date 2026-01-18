@@ -41,7 +41,7 @@ public:
       /////////////////////////////////////////////////
       MockObject<TestFixtureInfoReader> fixture;
 
-      fixture.METHOD(TestFixtureInfoReader::getName)
+      fixture.METHOD_MACRO(TestFixtureInfoReader::getName)
              .stubs().will(returnValue(std::string("stupidNameOrWhatever")));
 
       TS_ASSERT(filter->isFixtureMatch(fixture));
@@ -49,7 +49,7 @@ public:
       /////////////////////////////////////////////////
       MockObject<TestCaseInfoReader> testcase;
 
-      testcase.METHOD(TestCaseInfoReader::getName)
+      testcase.METHOD_MACRO(TestCaseInfoReader::getName)
              .stubs().will(returnValue(std::string("stupidNameOrWhatever")));
 
       TS_ASSERT(filter->isCaseMatch((const TestCase*)(const TestCaseInfoReader*)testcase));
@@ -79,7 +79,7 @@ public:
       //////////////////////////////////////////////////
       MockObject<TestFixtureInfoReader> fixture2;
 
-      fixture2.METHOD(TestFixtureInfoReader::getName)
+      fixture2.METHOD_MACRO(TestFixtureInfoReader::getName)
               .stubs().will(returnValue(std::string("Fixture2")));
 
       TS_ASSERT(!filter->isFixtureMatch(fixture2));
@@ -87,7 +87,7 @@ public:
       //////////////////////////////////////////////////
       MockObject<TestFixtureInfoReader> fixture1;
 
-      fixture1.METHOD(TestFixtureInfoReader::getName)
+      fixture1.METHOD_MACRO(TestFixtureInfoReader::getName)
               .stubs().will(returnValue(std::string("Fixture1")));
 
       TS_ASSERT(filter->isFixtureMatch(fixture1));

@@ -37,28 +37,28 @@ public:
       std::string fixtureName = "TestFixture";
       std::string caseName = "TestCase";
 
-      fixture.METHOD(TestFixtureInfoReader::getName)
+      fixture.METHOD_MACRO(TestFixtureInfoReader::getName)
              .defaults().will(returnValue(fixtureName));
 
-      testcase.METHOD(TestCaseInfoReader::getName)
+      testcase.METHOD_MACRO(TestCaseInfoReader::getName)
              .defaults().will(returnValue(caseName));
 
-      testcase.METHOD(TestCaseInfoReader::getNameOfFixture)
+      testcase.METHOD_MACRO(TestCaseInfoReader::getNameOfFixture)
              .defaults().will(returnValue(fixtureName));
 
-      fixtureMatcher.METHOD(NameMatcher::matches)
+      fixtureMatcher.METHOD_MACRO(NameMatcher::matches)
              .defaults().with(eq(fixtureName))
              .will(returnValue(true));
 
-      fixtureMatcher.METHOD(NameMatcher::matches)
+      fixtureMatcher.METHOD_MACRO(NameMatcher::matches)
              .defaults().with(neq(fixtureName))
              .will(returnValue(false));
 
-      caseMatcher.METHOD(NameMatcher::matches)
+      caseMatcher.METHOD_MACRO(NameMatcher::matches)
              .defaults().with(eq(caseName))
              .will(returnValue(true));
 
-      caseMatcher.METHOD(NameMatcher::matches)
+      caseMatcher.METHOD_MACRO(NameMatcher::matches)
              .defaults().with(neq(caseName))
              .will(returnValue(false));
    }

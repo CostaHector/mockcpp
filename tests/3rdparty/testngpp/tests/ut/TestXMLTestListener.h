@@ -54,61 +54,61 @@ public:
 		pauseCheckStatus();		
 		#endif
 		testSuiteInfoReader
-			.METHOD(TestSuiteInfoReader::getName)
+			.METHOD_MACRO(TestSuiteInfoReader::getName)
 			.stubs()
 			.will(returnValue(std::string("Suite 1")));
 
 		testSuiteResultReporter
-			.METHOD(TestSuiteResultReporter::getNumberOfCrashedTestCases)
+			.METHOD_MACRO(TestSuiteResultReporter::getNumberOfCrashedTestCases)
 			.stubs()
 			.with(eq((TestSuiteInfoReader*) testSuiteInfoReader))
 			.will(returnValue(11));
 
 		testSuiteResultReporter
-			.METHOD(TestSuiteResultReporter::getNumberOfFixtures)
+			.METHOD_MACRO(TestSuiteResultReporter::getNumberOfFixtures)
 			.stubs()
 			.with(eq((TestSuiteInfoReader*) testSuiteInfoReader))
 			.will(returnValue(6));
 
       testSuiteResultReporter
-			.METHOD(TestSuiteResultReporter::getNumberOfSkippedTestCases)
+			.METHOD_MACRO(TestSuiteResultReporter::getNumberOfSkippedTestCases)
          .stubs()
          .will(returnValue((unsigned int)2));
 
       testSuiteResultReporter
-			.METHOD(TestSuiteResultReporter::getNumberOfTestCases)
+			.METHOD_MACRO(TestSuiteResultReporter::getNumberOfTestCases)
          .stubs()
          .will(returnValue((unsigned int)66));
 
 		testSuiteResultReporter
-			.METHOD(TestSuiteResultReporter::getNumberOfErrorTestCases)
+			.METHOD_MACRO(TestSuiteResultReporter::getNumberOfErrorTestCases)
 			.stubs()
 			.with(eq((TestSuiteInfoReader*) testSuiteInfoReader))
 			.will(returnValue(22));
 		testSuiteResultReporter
-			.METHOD(TestSuiteResultReporter::getNumberOfFailedTestCases)
+			.METHOD_MACRO(TestSuiteResultReporter::getNumberOfFailedTestCases)
 			.stubs()
 			.with(eq((TestSuiteInfoReader*) testSuiteInfoReader))
 			.will(returnValue(33));
 
 		testCaseInfoReader
-			.METHOD(TestCaseInfoReader::getName)
+			.METHOD_MACRO(TestCaseInfoReader::getName)
 			.stubs()
 			.will(returnValue(std::string("Test 1")))
 			.then(returnValue(std::string("Test 2")));
 		testCaseInfoReader
-			.METHOD(TestCaseInfoReader::getNameOfFixture)
+			.METHOD_MACRO(TestCaseInfoReader::getNameOfFixture)
 			.stubs()
 			.will(returnValue(std::string("Fixture 1")))
 			.then(returnValue(std::string("Fixture 2")));
 		testCaseInfoReader
-			.METHOD(TestCaseInfoReader::getFileName)
+			.METHOD_MACRO(TestCaseInfoReader::getFileName)
 			.stubs()
 			.will(returnValue(std::string("Test-1.cpp")))
 			.then(returnValue(std::string("Test-2.cpp")));
 
 		testCaseResultReporter
-			.METHOD(TestCaseResultReporter::getTestCaseResult)
+			.METHOD_MACRO(TestCaseResultReporter::getTestCaseResult)
 			.stubs()
 			.with(eq((TestCaseInfoReader*) testCaseInfoReader))
 			.will(returnValue((unsigned int) TestCaseResultReporter::TR_SUCCESS))
